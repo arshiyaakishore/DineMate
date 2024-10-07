@@ -26,7 +26,7 @@ DineMate is an AI-driven chatbot designed for a virtual eatery management platfo
 ## Usage
 Once the application is running, you can interact with the DineMate chatbot through the designated interface. Users can initiate conversations, browse the menu, and place orders.
 
-How DineMate Looks:
+## How DineMate Looks:
 ![image](https://github.com/user-attachments/assets/a530a9be-0b28-468a-a2a7-ee0bd8350fa2)
 
 ![image](https://github.com/user-attachments/assets/392ed137-4a11-4bb9-b857-4f97f0e5299b)
