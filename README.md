@@ -16,7 +16,15 @@ DineMate is an AI-driven chatbot designed for a virtual eatery management platfo
 - **Database**: MySQL
 - **Chatbot Framework**: Dialogflow
 
+### Installation
 
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/arshiyaakishore/DineMate.git
+   cd DineMate
+
+## Usage
+Once the application is running, you can interact with the DineMate chatbot through the designated interface. Users can initiate conversations, browse the menu, and place orders.
 
 How DineMate Looks:
 ![image](https://github.com/user-attachments/assets/a530a9be-0b28-468a-a2a7-ee0bd8350fa2)
@@ -24,3 +32,5 @@ How DineMate Looks:
 ![image](https://github.com/user-attachments/assets/392ed137-4a11-4bb9-b857-4f97f0e5299b)
 
 ![image](https://github.com/user-attachments/assets/3a6019de-bfc6-4be1-9f93-7f44aae55fcb)
+
+Thank you for checking out DineMate! Enjoy the enhanced dining experience!
