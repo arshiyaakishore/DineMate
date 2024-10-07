@@ -1,6 +1,22 @@
 # DineMate
 DineMate is an AI-driven chatbot designed for a virtual eatery management platform. This innovative solution leverages natural language processing (NLP) to automate customer engagement, streamline order placements, facilitate menu navigation, and provide real-time assistance, significantly enhancing user experience and operational efficiency.
 
+## Features
+
+- **Natural Language Processing (NLP)**: Understands and responds to customer inquiries effectively.
+- **Order Placement**: Allows customers to place orders seamlessly through chat interactions.
+- **Menu Navigation**: Provides users with detailed menu information and recommendations.
+- **Real-Time Assistance**: Offers instant help for common queries and issues.
+- **User-Friendly Interface**: Intuitive and responsive design for improved customer interaction.
+
+## Technologies Used
+
+- **Programming Language**: Python
+- **Web Framework**: FastAPI
+- **Database**: MySQL
+- **Chatbot Framework**: Dialogflow
+
+
 
 How DineMate Looks:
 ![image](https://github.com/user-attachments/assets/a530a9be-0b28-468a-a2a7-ee0bd8350fa2)
