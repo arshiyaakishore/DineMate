@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI
 from fastapi import Request
 from fastapi.responses import JSONResponse
@@ -8,6 +7,7 @@ import generic_helper
 app = FastAPI()
 
 inprogress_orders = {}
+
 
 @app.post("/")
 async def handle_request(request: Request):
@@ -30,6 +30,7 @@ async def handle_request(request: Request):
 
     return intent_handler_dict[intent](parameters, session_id)
 
+
 def save_to_db(order: dict):
     next_order_id = db_helper.get_next_order_id()
 
@@ -49,6 +50,7 @@ def save_to_db(order: dict):
 
     return next_order_id
 
+
 def complete_order(parameters: dict, session_id: str):
     if session_id not in inprogress_orders:
         fulfillment_text = "I'm having a trouble finding your order. Sorry! Can you place a new order please?"
@@ -62,8 +64,8 @@ def complete_order(parameters: dict, session_id: str):
             order_total = db_helper.get_total_order_price(order_id)
 
             fulfillment_text = f"Awesome. We have placed your order. " \
-                           f"Here is your order id # {order_id}. " \
-                           f"Your order total is {order_total} which you can pay at the time of delivery!"
+                               f"Here is your order id # {order_id}. " \
+                               f"Your order total is {order_total} which you can pay at the time of delivery!"
 
         del inprogress_orders[session_id]
 
@@ -76,7 +78,7 @@ def add_to_order(parameters: dict, session_id: str):
     food_items = parameters["food-item"]
     quantities = parameters["number"]
 
-    if len(food_items) != len(quantities): #when one qty is only mentioned
+    if len(food_items) != len(quantities):
         fulfillment_text = "Sorry I didn't understand. Can you please specify food items and quantities clearly?"
     else:
         new_food_dict = dict(zip(food_items, quantities))
@@ -101,7 +103,7 @@ def remove_from_order(parameters: dict, session_id: str):
         return JSONResponse(content={
             "fulfillmentText": "I'm having a trouble finding your order. Sorry! Can you place a new order please?"
         })
-    
+
     food_items = parameters["food-item"]
     current_order = inprogress_orders[session_id]
 
@@ -133,12 +135,20 @@ def remove_from_order(parameters: dict, session_id: str):
 
 
 def track_order(parameters: dict, session_id: str):
-    order_id = int(parameters['order_id'])
-    order_status = db_helper.get_order_status(order_id)
-    if order_status:
-        fulfillment_text = f"The order status for order id: {order_id} is: {order_status}"
+    # Ensure parameters['order_id'] is not an empty list
+    if 'order_id' in parameters and parameters['order_id']:
+        order_id = parameters['order_id'][0]  # Extract the first element if it's a list
+        try:
+            order_id = int(order_id)  # Convert to integer
+            order_status = db_helper.get_order_status(order_id)
+            if order_status:
+                fulfillment_text = f"The order status for order id: {order_id} is: {order_status}"
+            else:
+                fulfillment_text = f"No order found with order id: {order_id}"
+        except ValueError:
+            fulfillment_text = "The order ID provided is not a valid number."
     else:
-        fulfillment_text = f"No order found with order id: {order_id}"
+        fulfillment_text = "No order ID was provided to track the order."
 
     return JSONResponse(content={
         "fulfillmentText": fulfillment_text
