@@ -76,7 +76,7 @@ def add_to_order(parameters: dict, session_id: str):
     food_items = parameters["food-item"]
     quantities = parameters["number"]
 
-    if len(food_items) != len(quantities):
+    if len(food_items) != len(quantities): #when one qty is only mentioned
         fulfillment_text = "Sorry I didn't understand. Can you please specify food items and quantities clearly?"
     else:
         new_food_dict = dict(zip(food_items, quantities))

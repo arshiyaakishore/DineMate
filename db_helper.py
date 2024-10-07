@@ -79,10 +79,11 @@ def get_next_order_id():
     query = "SELECT MAX(order_id) FROM orders"
     cursor.execute(query)
 
-    # Fetching the result
+    # Fetch the result and print it for debugging
     result = cursor.fetchone()[0]
+    print(f"Current max order_id in database: {result}")  # Debugging line
 
-    # Closing the cursor
+    # Close the cursor
     cursor.close()
 
     # Returning the next available order_id
@@ -90,6 +91,7 @@ def get_next_order_id():
         return 1
     else:
         return result + 1
+
 
 # Function to fetch the order status from the order_tracking table
 def get_order_status(order_id):
